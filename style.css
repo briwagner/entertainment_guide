@@ -5,6 +5,7 @@
   margin: 5px;
   border: 2px solid #00ace6;
   background: linear-gradient(to top, #4dd2ff 5%,#b3ecff);
+  border-radius: 2%;
 }
 
 .movie-tile p {
@@ -62,6 +63,7 @@ header input[type="submit"] {
   color: white;
   border: 0;
   padding: 8px 15px;
+  border-radius: 2%
 }
 
 header input[type="submit"]:hover {

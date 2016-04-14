@@ -19,37 +19,40 @@ myApp.controller('movieCtrl', ['$scope', 'api', function($scope, api) {
   $scope.apiUrl = api.url;
   $scope.imageUrl = api.imageUrl;
   $scope.apiKey = '?api_key=' + api.key;
-  $scope.getGenres = function(movie) {
 
-    // consider create empty array; then push into array instead of mapping?
+  $scope.getGenres = function(movie) {
     var genreList = [];
     if (movie.genres && movie.genres.length > 0) {
-      genreList.forEach(function(e) {
+      movie.genres.forEach(function(e) {
         genreList.push(e.toLowerCase().replace(" ", "-"));
       })
     }
     if (genreList.length > 0){
-      genreList = genreList.join(" ");
+      return genreList.join(" ");
     }
-    return genreList;
   };
 
-  $scope.theatreList = function(theatreArray) {
-    var theatres = [];
-    theatreArray.forEach(function(el) {
-      theatres.push(el.theatre.name);
-    });
-    if (theatres.length > 0) {
-      var uniqueTheatres = [];
-      theatres.forEach(function(e) {
-        if (uniqueTheatres.indexOf(e) < 0) {
-          uniqueTheatres.push(e)
-        }
+  $scope.theatreList = function(movie) {
+    if (movie.showtimes) {
+      var theatres = [];
+      movie.showtimes.forEach(function(el) {
+        theatres.push(el.theatre.name);
       });
-      theatres = uniqueTheatres;
+      if (theatres && theatres.length > 0) {
+        var uniqueTheatres = [];
+        theatres.forEach(function(e) {
+          if (uniqueTheatres.indexOf(e) < 0) {
+            uniqueTheatres.push(e)
+          }
+        });
+        return theatres = uniqueTheatres;
+      } else {
+        return ["No showings found"]
+      }
     }
-    return theatres;
   };
+
+
 }]);
 
 myApp.directive('movieTile', function() {
