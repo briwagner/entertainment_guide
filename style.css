@@ -1,0 +1,70 @@
+.movie-tile {
+  width: 200px;
+  height: 320px;
+  float: left;
+  margin: 5px;
+  border: 2px solid #00ace6;
+  background: linear-gradient(to top, #4dd2ff 5%,#b3ecff);
+}
+
+.movie-tile p {
+  padding: 2px 5px;
+}
+
+.centered {
+  text-align: center;
+}
+
+.header {
+  padding: 16px 10px 0;
+  background-color: #660066;
+  height: 70px;
+}
+
+nav {
+  padding-top: 10px;
+}
+
+nav a {
+  background-color: #990099;
+  padding: 20px 15px;
+  color: white;
+  border-radius: 15px 15px 0 0;
+  font-size: 18px
+}
+
+nav a:hover {
+  text-decoration: none;
+  color: white;
+  background: linear-gradient(purple 40%, #660066);
+  box-shadow: 1px -1px 2px #333;
+}
+
+button {
+  padding: 25px;
+  border-radius: 15px;
+  background-color: #efefef;
+  border: 0;
+  box-shadow: 1px 1px 3px #333;
+}
+
+header {
+  padding: 5px 10px;
+}
+
+header input {
+  font-size: 16px;
+  padding: 5px 15px;
+}
+
+header input[type="submit"] {
+  background-color: #990099;
+  color: white;
+  border: 0;
+  padding: 8px 15px;
+}
+
+header input[type="submit"]:hover {
+  background: linear-gradient(purple 40%, #660066);
+  box-shadow: 1px 1px 2px #666;
+}
