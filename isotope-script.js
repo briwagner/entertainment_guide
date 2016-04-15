@@ -1,35 +1,37 @@
 $(document).ready(function() {
 
-  var sportsDOM = document.querySelector('.sports-grid');
-  var sportsBox;
-
-  if(sportsDOM) {
-    sportsBox = new Isotope(sportsDOM, {
-      itemSelector: '.sports-tile',
-      layoutMode: 'fitRows'
-    });
-  };
-
-// data binding on sports filter buttons
-  $('.event-filter').on('click', function(event) {
-    event.preventDefault();
-    var filter;
-    if(this.getAttribute('data-filter-name').length > 0) {
-      filter = "." + this.getAttribute('data-filter-name');
-    } else {
-      var filter = "*"
-    }
-    setFilter(filter);
-  })
+  prepSportsBox();
 
 });
 
-// set filter in sports box
-var setFilter = function(filterName) {
-  $('.sports-grid').isotope({filter: ""});
-  $('.sports-grid').isotope({filter: filterName});
-};
+function prepSportsBox() {
+    var sportsDOM = document.querySelector('body .sports-grid');
+    var sportsBox;
 
-// scrub filter names as provided by API
+    if(sportsDOM) {
+      sportsBox = new Isotope(sportsDOM, {
+        itemSelector: '.sports-tile',
+        layoutMode: 'fitRows'
+      });
+    };
+
+  // data binding on filter buttons
+    $('body .event-filter').on('click', function(event) {
+      event.preventDefault();
+      var filter;
+      if(this.getAttribute('data-filter-name').length > 0) {
+        filter = "." + this.getAttribute('data-filter-name');
+      } else {
+        filter = "*"
+      }
+      setFilter(filter);
+    });
+}
+
+// apply filter
+var setFilter = function(filterName) {
+  $('body .sports-grid').isotope({filter: ""});
+  $('body .sports-grid').isotope({filter: filterName});
+};
 
 

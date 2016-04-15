@@ -89,4 +89,5 @@ header input[type="submit"]:hover {
   padding: 5px 8px;
   display: inline-block;
   margin: 5px;
+  cursor: pointer;
 }
