@@ -27,24 +27,33 @@
   <div ng-controller="sportsCtrl">
     <header>
       <form ng-submit="getSportListings(zipCode)" name="sportsForm">
-        <input name="zipCode" ng-model="zipCode" type="text" placeholder="Enter zip code">
-        <input type="submit" value="Find Sports">
+        <!-- <input name="zipCode" ng-model="zipCode" type="text" placeholder="Enter zip code"> -->
+        <input type="submit" value="Get Sports">
+      </form>
+      <form id="eventSelect" ng-if="sports.length > 0">
+        <select ng-model="eventKey">
+          <option value="">All</option>
+          <option ng-repeat="ev in sportTypes" value="{{ev}}">{{ev}}</option>
+        </select>
       </form>
 
       <!-- hide section if no listings -->
       <div ng-if="sports.length > 0">
         <h4>Found {{ sports.length }} events on tv</h4>
+
+      <!-- isotope filtering DISABLE in pref angular filter-->
         <ul class="event-list">
           <li class="event-filter" data-filter-name="">All</li>
           <li ng-repeat='ev in sportTypes' class="event-filter" data-filter-name='{{scrubEventType(ev)}}'>{{ev}}</li>
         </ul>
+
       </div>
       <!-- show comment if no listings -->
-      <h4 ng-hide="sports.length > 0">Enter your zip to find sports on local TV.</h4>
+      <h4 ng-hide="sports.length > 0">Click to view sports on local TV.</h4>
 
     </header>
     <div class="sports-grid" ng-if="sports.length > 0">
-      <div ng-repeat='event in sports' class="sports-tile {{getEventType(event)}}">
+      <div ng-repeat='event in sports | filter:eventKey' class="sports-tile {{getEventType(event)}}">
         <sports-tile></sports-tile>
       </div>
     </div>

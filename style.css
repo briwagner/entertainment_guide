@@ -81,6 +81,7 @@ header input[type="submit"]:hover {
 .event-list {
   list-style-type: none;
   padding: 0;
+  display:none;
 }
 
 .event-filter {
@@ -91,3 +92,17 @@ header input[type="submit"]:hover {
   margin: 5px;
   cursor: pointer;
 }
+
+header form {
+  margin: 10px 0;
+}
+
+header #eventSelect {
+}
+
+header #eventSelect option {
+  font-size: 16px;
+  line-height: 1.4em;
+  padding: 5px 15px;
+}
+
