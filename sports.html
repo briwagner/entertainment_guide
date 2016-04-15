@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Entertainment Guide</title>
+  <title>Entertainment Guide - Sports on TV</title>
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="style.css">
@@ -13,26 +13,34 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.10/angular-route.min.js" type="text/javascript"></script>
   <script src="script.js"></script>
   <script type="text/javascript" src='moviesRaw.js'></script>
+  <script type="text/javascript" src='rawSports.js'></script>
+  <script type="text/javascript" src="isotope.min.js"></script>
+  <script type="text/javascript" src="isotope-script.js"></script>
+
 
 </head>
 
 <body ng-app='myApp'>
   <header-nav></header-nav>
 
-  <div ng-controller='movieCtrl' class='movie-grid'>
+  <div ng-controller="sportsCtrl">
     <header>
       <form>
         <input name="zipCode" type="text" placeholder="Enter zip code">
         <input type='submit' value="Find Movies">
       </form>
-      <h4>Found {{movies.length}} movies</h4>
+      <h4>Found {{ sports.length }} events on tv</h4>
+      <ul class="event-list">
+        <li class="event-filter" data-filter-name="">All</li>
+        <li ng-repeat='ev in sportTypes' class="event-filter" data-filter-name='{{scrubEventType(ev)}}'>{{ev}}</li>
+      </ul>
     </header>
-    <div ng-repeat='m in movies' class="movie-tile {{getGenres(m)}}">
-      <div movie-tile></div>
+    <div class="sports-grid">
+      <div ng-repeat='event in sports' class="sports-tile {{getEventType(event)}}">
+        <sports-tile></sports-tile>
+      </div>
     </div>
   </div>
-
-
 
 </body>
 </html>

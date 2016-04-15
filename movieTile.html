@@ -1,4 +1,6 @@
 <h4 class="centered">{{m.title}}</h4>
 <p>{{m.shortDescription}}</p>
 <!-- below function returns array of objects w/ theatre name as key and showtimes in array -->
+<p ng-if="!hasShowings(m)">No showings found</p>
+<!-- <p ng-if="hasShowings(m)" ng-repeat='t in getShowings(m)'>{{t.scrName}}</p> -->
 <p ng-repeat="t in theatreList(m)">{{ t }}</p>

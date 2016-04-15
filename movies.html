@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Entertainment Guide</title>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="style.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.10/angular.min.js" type="text/javascript"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.10/angular-route.min.js" type="text/javascript"></script>
+  <script src="script.js"></script>
+  <script type="text/javascript" src='moviesRaw.js'></script>
+  <script type="text/javascript" src='rawSports.js'></script>
+  <script type="text/javascript" src="isotope.min.js"></script>
+  <script type="text/javascript" src="isotope-script.js"></script>
+
+
+</head>
+
+<body ng-app='myApp'>
+  <header-nav></header-nav>
+
+  <div ng-controller='movieCtrl' class='movie-grid'>
+    <header>
+      <form>
+        <input name="zipCode" type="text" placeholder="Enter zip code">
+        <input type='submit' value="Find Movies">
+      </form>
+      <h4>Found {{movies.length}} movies</h4>
+    </header>
+    <div ng-repeat='m in movies' class="movie-tile {{getGenres(m)}}">
+      <movie-tile></movie-tile>
+    </div>
+  </div>
+
+</body>
+</html>

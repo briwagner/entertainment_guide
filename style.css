@@ -1,4 +1,9 @@
-.movie-tile {
+.sports-grid, .movie-grid {
+  margin-bottom: 20px;
+  clear:both;
+}
+
+.movie-tile, .sports-tile {
   width: 200px;
   height: 320px;
   float: left;
@@ -6,11 +11,12 @@
   border: 2px solid #00ace6;
   background: linear-gradient(to top, #4dd2ff 5%,#b3ecff);
   border-radius: 2%;
+  padding: 5px;
 }
 
-.movie-tile p {
+/*.movie-tile p {
   padding: 2px 5px;
-}
+}*/
 
 .centered {
   text-align: center;
@@ -51,6 +57,7 @@ button {
 
 header {
   padding: 5px 10px;
+  clear:both;
 }
 
 header input {
@@ -69,4 +76,17 @@ header input[type="submit"] {
 header input[type="submit"]:hover {
   background: linear-gradient(purple 40%, #660066);
   box-shadow: 1px 1px 2px #666;
+}
+
+.event-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.event-filter {
+  background-color: purple;
+  color: white;
+  padding: 5px 8px;
+  display: inline-block;
+  margin: 5px;
 }
