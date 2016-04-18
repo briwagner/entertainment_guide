@@ -2,12 +2,6 @@ var myApp = angular.module('myApp', []);
 
 http://data.tmsapi.com/v1.1/movies/showings?startDate=2016-04-12&zip=20002&api_key=7fbqc3huhn75gvd3wkg7hsaz
 
-myApp.constant('api', {
-  url: 'http://data.tmsapi.com/',
-  key: '7fbqc3huhn75gvd3wkg7hsaz',
-  imageUrl: 'http://developer.tmsimg.com/'
-});
-
 myApp.controller('movieCtrl', ['$scope', '$http', 'api', function($scope, $http, api) {
   $scope.apiUrl = api.url + "v1.1/movies/showings?";
   $scope.imageUrl = api.imageUrl;
