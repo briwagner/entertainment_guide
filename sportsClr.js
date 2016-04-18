@@ -3,7 +3,9 @@ myApp.controller('sportsCtrl', ['$scope', '$http', 'api', function($scope, $http
 // working url request
   // -- http://data.tmsapi.com/v1.1/sports/all/events/airings?lineupId=USA-DFLTE&startDateTime=2016-04-14T16%3A30Z&api_key=7fbqc3huhn75gvd3wkg7hsaz
 
+  // init empty array to hold response data
   $scope.sports = [];
+  $scope.sportTypes = [];
 
   // init w/ preloaded array --> must remove for production
   // $scope.sports = stripDupes(rawSports);
@@ -16,7 +18,12 @@ myApp.controller('sportsCtrl', ['$scope', '$http', 'api', function($scope, $http
 
   $scope.sportsPrefix = 'v1.1/sports/all/events/airings?';
   $scope.lineupId = 'lineupId=USA-DFLTE';
-  $scope.dateURL = '&startDateTime=' + getTodayDate();
+
+  // today's date for query
+  $scope.queryDate = new Date();
+  $scope.dateURL = '&startDateTime=' + getTodayDate($scope.queryDate);
+
+  // user enters zip code; NOT possible w/ current api account
   $scope.zipCode;
 
   // form processing
@@ -28,9 +35,11 @@ myApp.controller('sportsCtrl', ['$scope', '$http', 'api', function($scope, $http
     var getSports = $http.get(requestURL).then(function(response) {
       $scope.sports = stripDupes(response.data);
       $scope.sportTypes = getAllEventTypes(response.data);
-      prepSportsBox();
+      // prepSportsBox();
     });
   }
+
+  $scope.scrubEventType = scrubEventType;
 
   // sports IDs
   var golf = '117';
@@ -42,9 +51,13 @@ myApp.controller('sportsCtrl', ['$scope', '$http', 'api', function($scope, $http
   var mma = '231';
 
   // format date for URL query
-  function getTodayDate() {
-    var d = new Date();
+  function getTodayDate(d) {
     return d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate();
+  }
+
+  // formate date for final display in header
+  $scope.prettyDate = function(d) {
+    return d.toLocaleDateString();
   }
 
   // test for duplicates in array of elems
@@ -76,6 +89,7 @@ myApp.controller('sportsCtrl', ['$scope', '$http', 'api', function($scope, $http
     return eventDT.toLocaleTimeString('en-US', {hour: '2-digit', minute: '2-digit'});
   }
 
+  // iterate over genres for individual event
   $scope.getEventType = function(spEvent) {
     var genreArr = [];
     var genres = spEvent.program.genres;
@@ -89,13 +103,7 @@ myApp.controller('sportsCtrl', ['$scope', '$http', 'api', function($scope, $http
     }
   };
 
-  function scrubEventType(el) {
-    el = el.replace(/ /g, "-").replace(/\//g, "-").toLowerCase();
-    return el;
-  }
-
-  $scope.scrubEventType = scrubEventType;
-
+  // iterate over all events to get types for select filter
   function getAllEventTypes(arr) {
     var arrTypes = [];
     arr.forEach(function(el) {
@@ -108,6 +116,12 @@ myApp.controller('sportsCtrl', ['$scope', '$http', 'api', function($scope, $http
       }
     });
     return arrTypes;
+  }
+
+  // remove spaces, dashes from event type names
+  function scrubEventType(el) {
+    el = el.replace(/ /g, "-").replace(/\//g, "-").toLowerCase();
+    return el;
   }
 
 }]);

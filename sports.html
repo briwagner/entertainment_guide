@@ -33,13 +33,13 @@
       <form id="eventSelect" ng-if="sports.length > 0">
         <select ng-model="eventKey">
           <option value="">All</option>
-          <option ng-repeat="ev in sportTypes" value="{{ev}}">{{ev}}</option>
+          <option ng-repeat="ev in sportTypes" value="{{ev.toLowerCase()}}">{{ev}}</option>
         </select>
       </form>
 
       <!-- hide section if no listings -->
       <div ng-if="sports.length > 0">
-        <h4>Found {{ sports.length }} events on tv</h4>
+        <h4>Found {{ sports.length }} events on tv for {{prettyDate(queryDate)}}</h4>
 
       <!-- isotope filtering DISABLE in pref angular filter-->
         <ul class="event-list">
