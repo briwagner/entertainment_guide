@@ -8,17 +8,28 @@ myApp.constant('api', {
   imageUrl: 'http://developer.tmsimg.com/'
 });
 
-myApp.directive('headerNav', function() {
-  return {
-    templateUrl: 'headerNav.html'
-  }
-});
-
-myApp.controller('movieCtrl', ['$scope', 'api', function($scope, api) {
-  $scope.movies = movieRaw;
-  $scope.apiUrl = api.url;
+myApp.controller('movieCtrl', ['$scope', '$http', 'api', function($scope, $http, api) {
+  $scope.apiUrl = api.url + "v1.1/movies/showings?";
   $scope.imageUrl = api.imageUrl;
-  $scope.apiKey = '?api_key=' + api.key;
+  $scope.apiKey = '&api_key=' + api.key;
+
+  $scope.queryDate = new Date();
+  $scope.today = "startDate=" + getTodayDate($scope.queryDate);
+
+  $scope.movies = []; //movieRaw;
+
+  $scope.getMovieData = function(zip) {
+    if (zip == undefined) {
+      alert("Please enter a zip code");
+    } else {
+      var zipCode = "&zip=" + zip;
+      var movieUrl = $scope.apiUrl + $scope.today + zipCode + $scope.apiKey;
+      var movieRequest = $http.get(movieUrl);
+      movieRequest.then(function(response) {
+        $scope.movies = response.data;
+      })
+    }
+  };
 
   $scope.getGenres = function(movie) {
     var genreList = [];
@@ -82,11 +93,20 @@ myApp.controller('movieCtrl', ['$scope', 'api', function($scope, api) {
     }
   };
 
+  function getTodayDate(d) {
+    return d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate();
+  }
+
 }]);
+
+myApp.directive('headerNav', function() {
+  return {
+    templateUrl: 'headerNav.html'
+  }
+});
 
 myApp.directive('movieTile', function() {
   return {
     templateUrl: 'movieTile.html'
   }
 });
-

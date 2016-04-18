@@ -6,6 +6,7 @@ myApp.controller('sportsCtrl', ['$scope', '$http', 'api', function($scope, $http
   // init empty array to hold response data
   $scope.sports = [];
   $scope.sportTypes = [];
+  $scope.sportTitles = [];
 
   // init w/ preloaded array --> must remove for production
   // $scope.sports = stripDupes(rawSports);
@@ -26,20 +27,21 @@ myApp.controller('sportsCtrl', ['$scope', '$http', 'api', function($scope, $http
   // user enters zip code; NOT possible w/ current api account
   $scope.zipCode;
 
+  // custom function to clean event type
+  $scope.scrubEventType = scrubEventType;
+
   // form processing
   $scope.getSportListings = function(zipCode) {
-    $scope.zipCode = angular.copy(zipCode);
     // build request URL
     var requestURL = $scope.apiUrl + $scope.sportsPrefix + $scope.lineupId + $scope.dateURL + $scope.apiKey;
     // make request
-    var getSports = $http.get(requestURL).then(function(response) {
+    var getSports = $http.get(requestURL);
+    getSports.then(function(response) {
       $scope.sports = stripDupes(response.data);
-      $scope.sportTypes = getAllEventTypes(response.data);
-      // prepSportsBox();
+      // $scope.sportTypes = getAllEventTypes(response.data);
+      $scope.sportTitles = getAllTitles($scope.sports);
     });
   }
-
-  $scope.scrubEventType = scrubEventType;
 
   // sports IDs
   var golf = '117';
@@ -109,6 +111,7 @@ myApp.controller('sportsCtrl', ['$scope', '$http', 'api', function($scope, $http
     arr.forEach(function(el) {
       if (el.program.genres) {
         el.program.genres.forEach(function(e) {
+          // e = scrubEventType(e);
           if (arrTypes.indexOf(e) === -1) {
             arrTypes.push(e);
           }
@@ -116,6 +119,19 @@ myApp.controller('sportsCtrl', ['$scope', '$http', 'api', function($scope, $http
       }
     });
     return arrTypes;
+  }
+
+  function getAllTitles(dataArr) {
+    titles = [];
+    dataArr.forEach(function(el) {
+      if (el.program.title) {
+        var newTitle = el.program.title;
+        if (!titles.includes(newTitle)) {
+          titles.push(newTitle);
+        }
+      }
+    });
+    return titles;
   }
 
   // remove spaces, dashes from event type names
