@@ -8,10 +8,11 @@
 
     <!-- form to filter angular style thru event types -->
     <form id="eventSelect" ng-if="sports.length > 0">
-      <select ng-model="eventKey">
+      <select ng-model="eventFilter">
         <option value="">All</option>
         <option ng-repeat="ev in sportTitles" value="{{ev}}">{{ev}}</option>
       </select>
+      <input type="submit" value="Filter">
     </form>
 
     <!-- hide section if no listings -->
@@ -30,7 +31,7 @@
 
   </header>
   <div class="sports-grid" ng-if="sports.length > 0">
-    <div ng-repeat='event in sports | filter:{program: {title:eventKey} }' class="sports-tile">
+    <div ng-repeat="event in sports | filter:eventFilter" class="sports-tile">
       <sports-tile></sports-tile>
     </div>
   </div>
