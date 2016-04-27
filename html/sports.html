@@ -1,0 +1,37 @@
+<div>
+  <header>
+    <!-- current api account does not allow zip code search -->
+      <form ng-submit="getSportListings(zipCode)" name="sportsForm">
+        <!-- <input name="zipCode" ng-model="zipCode" type="text" placeholder="Enter zip code"> -->
+        <input type="submit" value="Get Sports for Today">
+      </form>
+
+    <!-- form to filter angular style thru event types -->
+    <form id="eventSelect" ng-if="sports.length > 0">
+      <select ng-model="eventKey">
+        <option value="">All</option>
+        <option ng-repeat="ev in sportTitles" value="{{ev}}">{{ev}}</option>
+      </select>
+    </form>
+
+    <!-- hide section if no listings -->
+    <div ng-if="sports.length > 0">
+      <h4>Found {{ sports.length }} events on tv for {{prettyDate(queryDate)}}</h4>
+
+    <!-- isotope filtering DISABLE in pref angular filter-->
+      <ul class="event-list">
+        <li class="event-filter" data-filter-name="">All</li>
+        <li ng-repeat='ev in sportTypes' class="event-filter" data-filter-name='{{scrubEventType(ev)}}'>{{ev}}</li>
+      </ul>
+
+    </div>
+    <!-- show comment if no listings -->
+    <h4 ng-hide="sports.length > 0">Click to view sports on local TV.</h4>
+
+  </header>
+  <div class="sports-grid" ng-if="sports.length > 0">
+    <div ng-repeat='event in sports | filter:{program: {title:eventKey} }' class="sports-tile">
+      <sports-tile></sports-tile>
+    </div>
+  </div>
+</div>

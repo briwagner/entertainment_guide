@@ -144,6 +144,6 @@ myApp.controller('sportsCtrl', ['$scope', '$http', 'api', function($scope, $http
 
 myApp.directive('sportsTile', function() {
   return {
-    templateUrl: 'sportsTile.html'
+    templateUrl: 'html/sportsTile.html'
   }
 });
