@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>pagetitle</title>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.10/angular.min.js" type="text/javascript"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.10/angular-route.min.js" type="text/javascript"></script>
+  <script src="rawSports.js"></script>
+
+</head>
+
+<body ng-app="demoApp" ng-controller="main">
+  <form>
+    <select ng-model="search">
+      <option value="">All</option>
+      <option ng-repeat="c in cats" value="{{c.program.color}}">{{c.program.color | uppercase}}</option>
+    </select>
+  </form>
+  <p ng-repeat="c in cats | filter:{program:{color:search}}">{{c.program.name}} is {{c.program.color}}</p>
+
+  <p>Sport listings found: {{sports.length}}</p>
+
+  <form>
+    <select ng-model="filterSports">
+      <option value="">All</option>
+      <option ng-repeat="p in sports" value="{{p.program.title}}">{{p.program.title}}</option>
+    </select>
+  </form>
+
+  <div ng-repeat="s in sports | filter:filterSports">
+    <h4>{{s.program.title}} | <span style="background-color: red; color: blue">{{s.program.eventTitle}}</span></h4>
+  </div>
+
+<script type="text/javascript">
+
+var demoApp = angular.module('demoApp', []);
+
+demoApp.controller('main', function($scope) {
+  $scope.sports = rawSports;
+  $scope.cats = [{program: {name: "sparky", color: 'black'}},
+    {program: {name: "spunky", color: 'red'}}];
+});
+
+</script>
+
+</body>
+</html>

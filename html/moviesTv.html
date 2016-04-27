@@ -1,3 +1,13 @@
 <div>
-  Coming soon ... to your home
+  <div ng-hide="uniqueMovies.length === 0">
+    <p>Found {{uniqueMovies.length}} movies on TV</p>
+    <form>
+      <select ng-model="search">
+        <option value="" selected>All</option>
+        <option ng-repeat="m in uniqueGenres" value="{{m}}">{{m}}</option>
+    </select>
+    </form>
+  </div>
+  <button ng-click="fetchMovies()">Get Movie Listings</button>
+  <p ng-repeat="m in uniqueMovies | filter:search">{{m.program.rootId}} | {{m.program.title}}</p>
 </div>

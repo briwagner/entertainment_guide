@@ -25,8 +25,8 @@ myApp.config(function($routeProvider, $locationProvider) {
     .otherwise({
         redirectTo: '/'
     });
-    
-    $locationProvider.html5Mode(true);    
+
+    $locationProvider.html5Mode(true);
 });
 
 myApp.directive('headerNav', function() {
