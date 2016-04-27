@@ -7,12 +7,11 @@
       </form>
 
     <!-- form to filter angular style thru event types -->
-    <form id="eventSelect" ng-if="sports.length > 0">
+    <form id="eventSelect" ng-hide="sports.length === 0">
       <select ng-model="eventFilter">
         <option value="">All</option>
         <option ng-repeat="ev in sportTitles" value="{{ev}}">{{ev}}</option>
       </select>
-      <input type="submit" value="Filter">
     </form>
 
     <!-- hide section if no listings -->
