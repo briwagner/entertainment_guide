@@ -9,9 +9,9 @@ myApp.controller('sportsCtrl', ['$scope', '$http', 'api', function($scope, $http
   $scope.sportTitles = [];
 
   // init w/ preloaded array --> must remove for production
-  $scope.sports = stripDupes(rawSports);
+  // $scope.sports = stripDupes(rawSports);
   // process listings array for event types
-  $scope.sportTypes = getAllEventTypes(rawSports);
+  // $scope.sportTypes = getAllEventTypes(rawSports);
 
   // api properties
   $scope.apiUrl = api.url;
@@ -26,7 +26,7 @@ myApp.controller('sportsCtrl', ['$scope', '$http', 'api', function($scope, $http
 
   // user enters zip code; NOT possible w/ current api account
   $scope.zipCode;
-  
+
   // custom function to clean event type
   $scope.scrubEventType = scrubEventType;
 
