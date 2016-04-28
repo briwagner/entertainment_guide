@@ -1,7 +1,3 @@
-var myApp = angular.module('myApp', []);
-
-http://data.tmsapi.com/v1.1/movies/showings?startDate=2016-04-12&zip=20002&api_key=7fbqc3huhn75gvd3wkg7hsaz
-
 myApp.controller('movieCtrl', ['$scope', '$http', 'api', function($scope, $http, api) {
   $scope.apiUrl = api.url + "v1.1/movies/showings?";
   $scope.imageUrl = api.imageUrl;
@@ -92,15 +88,3 @@ myApp.controller('movieCtrl', ['$scope', '$http', 'api', function($scope, $http,
   }
 
 }]);
-
-myApp.directive('headerNav', function() {
-  return {
-    templateUrl: 'headerNav.html'
-  }
-});
-
-myApp.directive('movieTile', function() {
-  return {
-    templateUrl: 'movieTile.html'
-  }
-});

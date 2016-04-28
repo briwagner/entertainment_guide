@@ -18,7 +18,7 @@ myApp.controller('sportsCtrl', ['$scope', '$http', 'api', function($scope, $http
   $scope.apiKey = '&api_key=' + api.key;
 
   $scope.sportsPrefix = 'v1.1/sports/all/events/airings?';
-  $scope.lineupId = 'lineupId=USA-DFLTE';
+  $scope.lineupId = 'lineupId=USA-VA65087-X';
 
   // today's date for query
   $scope.queryDate = new Date();
@@ -26,7 +26,7 @@ myApp.controller('sportsCtrl', ['$scope', '$http', 'api', function($scope, $http
 
   // user enters zip code; NOT possible w/ current api account
   $scope.zipCode;
-
+  
   // custom function to clean event type
   $scope.scrubEventType = scrubEventType;
 
@@ -144,6 +144,6 @@ myApp.controller('sportsCtrl', ['$scope', '$http', 'api', function($scope, $http
 
 myApp.directive('sportsTile', function() {
   return {
-    templateUrl: 'sportsTile.html'
+    templateUrl: 'html/sportsTile.html'
   }
 });
