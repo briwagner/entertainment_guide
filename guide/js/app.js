@@ -8,18 +8,18 @@ myApp.controller('mainCrl', function($scope, $route, $routeParams, $location) {
 
 myApp.config(function($routeProvider, $locationProvider) {
     $routeProvider.when("/", {
-      templateUrl: "/html/landing.html"
+      templateUrl: "/guide/html/landing.html"
     })
     .when('/movies', {
-        templateUrl: "/html/movies.html",
+        templateUrl: "/guide/html/movies.html",
         controller: "movieCtrl"
     })
     .when('/sports', {
-        templateUrl: "/html/sports.html",
+        templateUrl: "/guide/html/sports.html",
         controller: "sportsCtrl"
     })
     .when('/moviesOnTv', {
-      templateUrl: '/html/moviesTv.html',
+      templateUrl: '/guide/html/moviesTv.html',
       controller: 'moviesTvCtrl'
     })
     .otherwise({
@@ -31,12 +31,12 @@ myApp.config(function($routeProvider, $locationProvider) {
 
 myApp.directive('headerNav', function() {
   return {
-    templateUrl: '/html/headerNav.html'
+    templateUrl: '/guide/html/headerNav.html'
   }
 });
 
 myApp.directive('movieTile', function() {
   return {
-    templateUrl: '/html/movieTile.html'
+    templateUrl: '/guide/html/movieTile.html'
   }
 });
