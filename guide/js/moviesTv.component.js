@@ -70,4 +70,16 @@ myApp.controller('moviesTvCtrl', ['$scope', '$http', 'api', function($scope, $ht
     return dateString;
   }
 
+// formate date for display
+  $scope.getEventTime = function(dateObj) {
+    var eventDT = new Date(dateObj);
+    return eventDT.toLocaleTimeString('en-US', {hour: '2-digit', minute: '2-digit'});
+  }
+
 }]);
+
+myApp.directive('moviesTvTile', function() {
+  return {
+    templateUrl: '/guide/html/moviesTv.tile.html'
+  }
+});

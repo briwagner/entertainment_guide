@@ -1,13 +1,17 @@
-<div>
+<div class="movie-tv-header">
   <div ng-hide="uniqueMovies.length === 0">
-    <p>Found {{uniqueMovies.length}} movies on TV</p>
-    <form>
+    <h4>Found {{uniqueMovies.length}} movies on TV</h4>
+    <form class="movie-tv-filter">
       <select ng-model="search">
         <option value="" selected>All</option>
         <option ng-repeat="m in uniqueGenres" value="{{m}}">{{m}}</option>
     </select>
     </form>
   </div>
-  <button ng-click="fetchMovies()">Get Movie Listings</button>
-  <p ng-repeat="m in uniqueMovies | filter:search">{{m.program.rootId}} | {{m.program.title}}</p>
+
+  <button ng-hide="uniqueMovies.length > 0" ng-click="fetchMovies()">Get Movie Listings</button>
+</div>
+
+<div class="movie-tile centered" ng-repeat="m in uniqueMovies | filter:search">
+  <movies-tv-tile></movies-tv-tile>
 </div>

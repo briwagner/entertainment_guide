@@ -40,8 +40,12 @@ nav a {
   font-size: 18px
 }
 
-nav a:hover {
+nav a:link, nav a:visited, nav a:active, nav a:hover {
   text-decoration: none;
+  color: white;
+}
+
+nav a:hover {
   color: white;
   background: linear-gradient(purple 40%, #660066);
   box-shadow: 1px -1px 2px #333;
@@ -78,6 +82,16 @@ header input[type="submit"]:hover {
   box-shadow: 1px 1px 2px #666;
 }
 
+.movie-tv-header {
+  padding: 20px 0;
+}
+
+.movie-tv-header select {
+  padding: 15px 20px;
+  margin-bottom: 10px;
+  font-size: 1.5em;
+}
+
 .event-list {
   list-style-type: none;
   padding: 0;
@@ -100,7 +114,7 @@ header form {
 header #eventSelect {
 }
 
-header #eventSelect option {
+select, header #eventSelect option {
   font-size: 16px;
   line-height: 1.4em;
   padding: 5px 15px;
