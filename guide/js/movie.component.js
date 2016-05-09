@@ -7,16 +7,20 @@ myApp.controller('movieCtrl', ['$scope', '$http', 'api', function($scope, $http,
   $scope.today = "startDate=" + getTodayDate($scope.queryDate);
 
   $scope.movies = []; //movieRaw;
+  
+  $scope.loading = false;
 
   $scope.getMovieData = function(zip) {
-    if (zip == undefined) {
-      alert("Please enter a zip code");
+    if (zip == undefined || zip.length != 5) {
+      alert("Please enter a valid zip code");
     } else {
+      $scope.loading = true;
       var zipCode = "&zip=" + zip;
       var movieUrl = $scope.apiUrl + $scope.today + zipCode + $scope.apiKey;
       var movieRequest = $http.get(movieUrl);
       movieRequest.then(function(response) {
         $scope.movies = response.data;
+        $scope.loading = false;
       })
     }
   };

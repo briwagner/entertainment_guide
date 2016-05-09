@@ -12,6 +12,8 @@
   <button ng-hide="uniqueMovies.length > 0" ng-click="fetchMovies()">Get Movie Listings</button>
 </div>
 
+<div ng-show="loading">Loading ...</div>
+
 <div class="movie-tile centered" ng-repeat="m in uniqueMovies | filter:search">
   <movies-tv-tile></movies-tv-tile>
 </div>

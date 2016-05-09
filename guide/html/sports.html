@@ -29,6 +29,8 @@
     <h4 ng-hide="sports.length > 0">Click to view sports on local TV.</h4>
 
   </header>
+  
+  <div ng-show="loading">Loading ... </div>
   <div class="sports-grid" ng-if="sports.length > 0">
     <div ng-repeat="event in sports | filter:eventFilter" class="sports-tile">
       <sports-tile></sports-tile>

@@ -4,8 +4,10 @@
       <input name="zipCode" type="text" placeholder="Enter zip code" ng-model="zipCode">
       <input type='submit' value="Find Movies" ng-click="getMovieData(zipCode)">
     </form>
-    <h4>Found {{movies.length}} movies</h4>
+    <h4 ng-show="movies.length > 0">Found {{movies.length}} movies</h4>
   </header>
+  
+  <div ng-show="loading">Loading ...</div>
   
   <div ng-repeat='m in movies' class="movie-tile {{getGenres(m)}}">
     <movie-tile></movie-tile>

@@ -10,6 +10,8 @@ myApp.controller('moviesTvCtrl', ['$scope', '$http', 'api', function($scope, $ht
   $scope.urlPrefix = "http://data.tmsapi.com/v1.1/movies/airings?";
   $scope.lineupId = "lineupId=USA-VA65087-X";
   $scope.today = dateURL(new Date());
+  
+  $scope.loading = false;
 
 // api call for movie listing
   $scope.getMovieUrl = getMovieListingUrl();
@@ -20,10 +22,12 @@ myApp.controller('moviesTvCtrl', ['$scope', '$http', 'api', function($scope, $ht
   };
 
   $scope.fetchMovies = function() {
+    $scope.loading = true;
     $http.get($scope.getMovieUrl)
     .then(function(response) {
         $scope.uniqueMovies = removeDuplicates(response.data);
         $scope.uniqueGenres = getGenres($scope.uniqueMovies);
+        $scope.loading = false;
       }
     );
   };

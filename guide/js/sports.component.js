@@ -1,17 +1,11 @@
 myApp.controller('sportsCtrl', ['$scope', '$http', 'api', function($scope, $http, api) {
 
-// working url request
-  // -- http://data.tmsapi.com/v1.1/sports/all/events/airings?lineupId=USA-DFLTE&startDateTime=2016-04-14T16%3A30Z&api_key=7fbqc3huhn75gvd3wkg7hsaz
-
   // init empty array to hold response data
   $scope.sports = [];
   $scope.sportTypes = [];
   $scope.sportTitles = [];
-
-  // init w/ preloaded array --> must remove for production
-  // $scope.sports = stripDupes(rawSports);
-  // process listings array for event types
-  // $scope.sportTypes = getAllEventTypes(rawSports);
+  
+  $scope.loading = false;
 
   // api properties
   $scope.apiUrl = api.url;
@@ -32,14 +26,13 @@ myApp.controller('sportsCtrl', ['$scope', '$http', 'api', function($scope, $http
 
   // form processing
   $scope.getSportListings = function(zipCode) {
-    // build request URL
+    $scope.loading = true;
     var requestURL = $scope.apiUrl + $scope.sportsPrefix + $scope.lineupId + $scope.dateURL + $scope.apiKey;
-    // make request
     var getSports = $http.get(requestURL);
     getSports.then(function(response) {
       $scope.sports = stripDupes(response.data);
-      // $scope.sportTypes = getAllEventTypes(response.data);
       $scope.sportTitles = getAllTitles($scope.sports);
+      $scope.loading = false;
     });
   }
 
