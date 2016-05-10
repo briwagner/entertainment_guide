@@ -3,4 +3,7 @@
 <!-- below function returns array of objects w/ theatre name as key and showtimes in array -->
 <p ng-if="!hasShowings(m)">No showings found</p>
 <!-- <p ng-if="hasShowings(m)" ng-repeat='t in getShowings(m)'>{{t.scrName}}</p> -->
-<p ng-repeat="t in theatreList(m)">{{ t }}</p>
+<div ng-repeat="t in theatreList(m)"><p>{{ t }}</p>
+    <!--<p>{{showingTimes(m, t) | showingTimesList}}</p>-->
+    <div class="show-time" ng-repeat="s in showingTimes(m, t)"> <p>{{s}}</p></div>
+</div>

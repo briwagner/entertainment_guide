@@ -37,6 +37,24 @@ myApp.controller('movieCtrl', ['$scope', '$http', 'api', function($scope, $http,
     }
   };
 
+  $scope.showingTimes = function(m, t) {
+    var showtimes = [];
+    if (m.showtimes.length > 0) {
+      m.showtimes.forEach(function(item) {
+        if(item.theatre.name) {
+          if(item.theatre.name === t) {
+            if (showtimes.indexOf(item.dateTime) === -1) {
+              showtimes.push(item.dateTime);
+            }
+          }
+        }
+      });
+      // showtimes = showtimes.map(function(d) {return new Date(d);})
+      showtimes = showtimes.map(d => d.slice(-5));
+      return showtimes;
+    }
+  }
+
   $scope.getShowings = function(movie) {
     var showings = [];
     var matchIndex;
@@ -92,3 +110,9 @@ myApp.controller('movieCtrl', ['$scope', '$http', 'api', function($scope, $http,
   }
 
 }]);
+
+myApp.filter('showingTimesList', function() {
+  return function(obj) {
+    return obj.join(", ");
+  }
+});
