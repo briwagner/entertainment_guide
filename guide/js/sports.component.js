@@ -50,7 +50,7 @@ myApp.controller('sportsCtrl', ['$scope', '$http', 'api', function($scope, $http
     return d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate();
   }
 
-  // formate date for final display in header
+  // format date for final display in header
   $scope.prettyDate = function(d) {
     return d.toLocaleDateString();
   }
