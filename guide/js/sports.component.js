@@ -4,7 +4,7 @@ myApp.controller('sportsCtrl', ['$scope', '$http', 'api', function($scope, $http
   $scope.sports = [];
   $scope.sportTypes = [];
   $scope.sportTitles = [];
-  
+
   $scope.loading = false;
 
   // api properties
@@ -140,3 +140,18 @@ myApp.directive('sportsTile', function() {
     templateUrl: 'html/sportsTile.html'
   }
 });
+
+var Sport = function(data) {
+  this.data = data;
+  this.sportId = data.program.sportsId;
+  this.startTime = new Date(data.startTime);
+  this.endTime = new Date(data.endTime);
+  this.title = data.program.eventTitle;
+  this.genres = data.program.genres;
+  this.station = data.station.callSign;
+  this.stationNum = data.station.channel;
+
+  this.duration = function() {
+    return this.endTime - this.startTime;
+  };
+};
