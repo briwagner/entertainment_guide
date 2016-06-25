@@ -10,8 +10,9 @@ myApp.controller('sportsCtrl', ['$scope', '$http', 'api', function($scope, $http
   // api properties
   $scope.apiUrl = api.url;
   $scope.apiKey = '&api_key=' + api.key;
-
   $scope.sportsPrefix = 'v1.1/sports/all/events/airings?';
+
+  // only lineup available?
   $scope.lineupId = 'lineupId=USA-VA65087-X';
 
   // today's date for query
@@ -27,8 +28,15 @@ myApp.controller('sportsCtrl', ['$scope', '$http', 'api', function($scope, $http
   // form processing
   $scope.getSportListings = function(zipCode) {
     $scope.loading = true;
-    var requestURL = $scope.apiUrl + $scope.sportsPrefix + $scope.lineupId + $scope.dateURL + $scope.apiKey;
+
+    var requestURL = $scope.apiUrl
+                   + $scope.sportsPrefix
+                   + $scope.lineupId
+                   + $scope.dateURL
+                   + $scope.apiKey;
+
     var getSports = $http.get(requestURL);
+
     getSports.then(function(response) {
       $scope.sports = stripDupes(response.data);
       $scope.sportTitles = getAllTitles($scope.sports);
@@ -87,7 +95,9 @@ myApp.controller('sportsCtrl', ['$scope', '$http', 'api', function($scope, $http
   // iterate over genres for individual event
   $scope.getEventType = function(spEvent) {
     var genreArr = [];
+
     var genres = spEvent.program.genres;
+
     if (genres && genres.length > 0 ) {
       spEvent.program.genres.forEach(function(el) {
         genreArr.push( scrubEventType(el) );
@@ -101,6 +111,7 @@ myApp.controller('sportsCtrl', ['$scope', '$http', 'api', function($scope, $http
   // iterate over all events to get types for select filter
   function getAllEventTypes(arr) {
     var arrTypes = [];
+
     arr.forEach(function(el) {
       if (el.program.genres) {
         el.program.genres.forEach(function(e) {
@@ -116,6 +127,7 @@ myApp.controller('sportsCtrl', ['$scope', '$http', 'api', function($scope, $http
 
   function getAllTitles(dataArr) {
     titles = [];
+
     dataArr.forEach(function(el) {
       if (el.program.title) {
         var newTitle = el.program.title;
