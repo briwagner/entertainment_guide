@@ -2,4 +2,5 @@
 <h4 ng-if='!event.program.eventTitle' class='centered'>{{event.program.title}}</h4>
 <p class='centered' ng-hide='!event.program.eventTitle'>{{event.program.title}}</p>
 <p class='centered' ng-if='!event.program.eventTitle'>{{event.program.shortDescription}}</p>
+<!-- <p>{{event.program.sportsId}}</p> -->
 <p>Airing on <strong>{{event.station.callSign}}</strong> at <em>{{ getEventTime(event.startTime) }}</em></p>

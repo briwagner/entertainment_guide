@@ -1,8 +1,17 @@
 <div class="header">
-  <nav>
-    <a href="/guide/">Home</a>
-    <a href="movies">Movie Showtimes</a>
-    <a href="sports">Sports on TV</a>
-    <a href="moviesOnTv">Movies on TV</a>
-  </nav>
+  <div class="menu">
+    <nav>
+      <a href="/guide/">Home</a>
+      <a href="movies">Movie Showtimes</a>
+      <a href="sports">Sports on TV</a>
+      <a href="moviesOnTv">Movies on TV</a>
+    </nav>
+  </div>
+  <div class="zip-container">
+    <form id='zip-code-form'>
+      <input type='number' name='zip-code' placeholder='Enter zip code' ng-model='zipCode'>
+      <input type='Submit' value='Go!' ng-click=''>
+    </form>
+    <p>Your zip is {{zip}}</p>
+  </div>
 </div>

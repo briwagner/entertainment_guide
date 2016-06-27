@@ -24,9 +24,32 @@
 }
 
 .header {
-  padding: 16px 10px 0;
+  /*padding: 16px 10px 0;*/
   background-color: #660066;
   height: 70px;
+}
+
+.menu {
+  display:inline-block;
+  margin-top:16px;
+}
+
+.zip-container {
+  display:inline-block;
+  padding: 10px 5px;
+  float:right;
+  width:50%;
+  color:white;
+}
+
+#zip-code-form {
+  margin-top:10px;
+  color:black;
+}
+
+#zip-code-form input[type="number"] {
+  border: 1px solid #333;
+  border-radius: 2%;
 }
 
 .show-time {
@@ -39,7 +62,7 @@
 
 .show-time p {
    margin: 0 1px;
-   padding:0;  
+   padding:0;
 }
 
 nav {

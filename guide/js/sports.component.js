@@ -1,5 +1,7 @@
 myApp.controller('sportsCtrl', ['$scope', '$http', 'api', function($scope, $http, api) {
 
+  // $scope.zip = zipCtrl.getZip;
+
   // init empty array to hold response data
   $scope.sports = [];
   $scope.sportTypes = [];
