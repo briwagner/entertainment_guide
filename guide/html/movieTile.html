@@ -1,9 +1,12 @@
 <h4 class="centered">{{m.title}}</h4>
 <p>{{m.shortDescription}}</p>
+<p class="genre"><em>{{getGenres(m)}}</em></p>
+
 <!-- below function returns array of objects w/ theatre name as key and showtimes in array -->
 <p ng-if="!hasShowings(m)">No showings found</p>
 <!-- <p ng-if="hasShowings(m)" ng-repeat='t in getShowings(m)'>{{t.scrName}}</p> -->
-<div ng-repeat="t in theatreList(m)"><p>{{ t }}</p>
+<div ng-repeat="t in theatreList(m)">
+    <p class="theater">{{ t }}</p>
     <!--<p>{{showingTimes(m, t) | showingTimesList}}</p>-->
     <div class="show-time" ng-repeat="s in showingTimes(m, t)"> <p>{{s}}</p></div>
 </div>

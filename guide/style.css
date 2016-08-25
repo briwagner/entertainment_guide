@@ -46,7 +46,8 @@ header-nav h4 {
 }
 
 .zip-container button {
-  margin-left: 5px;
+  font-weight: 700;
+  margin-left: 10px;
 }
 
 #zip-code-form {
@@ -155,9 +156,6 @@ header form {
   margin: 10px 0;
 }
 
-header #eventSelect {
-}
-
 select, header #eventSelect option {
   font-size: 16px;
   line-height: 1.4em;
@@ -168,3 +166,13 @@ select, header #eventSelect option {
   display:inline-block;
 }
 
+.theater {
+  color:#0C83C5;
+  line-height:1.2em;
+  margin:5px 0;
+}
+
+.genre {
+  color:#0B447C;
+  margin-top:10px;
+}
