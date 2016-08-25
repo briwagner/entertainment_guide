@@ -12,3 +12,4 @@ Currently I'm working within the limitations of the free account. But I may be a
 In progress:
 add filter to movies
 click on movies to get more info?
+show error message for bad zip code when search fails?

@@ -127,16 +127,6 @@ header input[type="submit"]:hover {
   box-shadow: 1px 1px 2px #666;
 }
 
-.movie-tv-header {
-  padding: 20px 0;
-}
-
-.movie-tv-header select {
-  padding: 15px 20px;
-  margin-bottom: 10px;
-  font-size: 1.5em;
-}
-
 .event-list {
   list-style-type: none;
   padding: 0;
@@ -156,10 +146,20 @@ header form {
   margin: 10px 0;
 }
 
-select, header #eventSelect option {
+/* filter boxes */
+#eventSelect select,
+#tvSelect select {
+  border-radius:5px;
+  border: 1px solid blue;
+}
+
+select, 
+#eventSelect select option,
+#tvSelect select option {
   font-size: 16px;
   line-height: 1.4em;
   padding: 5px 15px;
+  color:blue;
 }
 
 .inline {

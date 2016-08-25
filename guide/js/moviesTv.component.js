@@ -12,6 +12,7 @@ myApp.controller('moviesTvCtrl', ['$scope', '$http', 'api', function($scope, $ht
   $scope.today = dateURL(new Date());
   
   $scope.loading = false;
+  $scope.moviesSet = false;
 
 // api call for movie listing
   $scope.getMovieUrl = getMovieListingUrl();
@@ -28,6 +29,7 @@ myApp.controller('moviesTvCtrl', ['$scope', '$http', 'api', function($scope, $ht
         $scope.uniqueMovies = removeDuplicates(response.data);
         $scope.uniqueGenres = getGenres($scope.uniqueMovies);
         $scope.loading = false;
+        $scope.moviesSet = true;
       }
     );
   };

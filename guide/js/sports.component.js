@@ -6,6 +6,7 @@ myApp.controller('sportsCtrl', ['$scope', '$http', 'api', function($scope, $http
   $scope.sportTitles = [];
 
   $scope.loading = false;
+  $scope.sportsSet = false;
 
   // api properties
   $scope.apiUrl = api.url;
@@ -38,6 +39,7 @@ myApp.controller('sportsCtrl', ['$scope', '$http', 'api', function($scope, $http
       $scope.sports = stripDupes(response.data);
       $scope.sportTitles = getAllTitles($scope.sports);
       $scope.loading = false;
+      $scope.sportsSet = true;
     });
   }
 
