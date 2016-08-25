@@ -10,8 +10,9 @@ myApp.controller('movieCtrl', ['$scope', '$http', 'api', function($scope, $http,
   
   $scope.loading = false;
 
-  $scope.getMovieData = function(zip) {
-    if (zip == undefined || zip.length != 5) {
+  $scope.getMovieData = function() {
+    var zip = $scope.zipCode;
+    if (zip == undefined || zip.toString().length !== 5) {
       alert("Please enter a valid zip code");
     } else {
       $scope.loading = true;
