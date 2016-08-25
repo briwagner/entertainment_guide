@@ -7,8 +7,10 @@ myApp.controller('movieCtrl', ['$scope', '$http', 'api', function($scope, $http,
   $scope.today = "startDate=" + getTodayDate($scope.queryDate);
 
   $scope.movies = []; //movieRaw;
+  $scope.uniqueGenres = [];
   
   $scope.loading = false;
+  $scope.moviesSet = false;
 
   $scope.getMovieData = function() {
     var zip = $scope.zipCode;
@@ -22,17 +24,26 @@ myApp.controller('movieCtrl', ['$scope', '$http', 'api', function($scope, $http,
       movieRequest.then(function(response) {
         $scope.movies = response.data;
         $scope.loading = false;
+        $scope.moviesSet = true;
       })
     }
   };
 
   $scope.getGenres = function(movie) {
     var genreList = [];
+
     if (movie.genres && movie.genres.length > 0) {
       movie.genres.forEach(function(e) {
-        genreList.push(e.replace(" ", "-"));
+        var gen = e.replace(" ", "-");
+        genreList.push(gen);
+
+      // push to master genre list
+        if ($scope.uniqueGenres.indexOf(e) === -1) {
+          $scope.uniqueGenres.push(e);
+        }
       })
     }
+    // format for html display
     if (genreList.length > 0){
       return genreList.join(", ");
     }
