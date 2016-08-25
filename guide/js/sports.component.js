@@ -1,7 +1,5 @@
 myApp.controller('sportsCtrl', ['$scope', '$http', 'api', function($scope, $http, api) {
 
-  // $scope.zip = zipCtrl.getZip;
-
   // init empty array to hold response data
   $scope.sports = [];
   $scope.sportTypes = [];
@@ -21,14 +19,11 @@ myApp.controller('sportsCtrl', ['$scope', '$http', 'api', function($scope, $http
   $scope.queryDate = new Date();
   $scope.dateURL = '&startDateTime=' + getTodayDate($scope.queryDate);
 
-  // user enters zip code; NOT possible w/ current api account
-  $scope.zipCode;
-
   // custom function to clean event type
   $scope.scrubEventType = scrubEventType;
 
   // form processing
-  $scope.getSportListings = function(zipCode) {
+  $scope.getSportListings = function() {
     $scope.loading = true;
 
     var requestURL = $scope.apiUrl
