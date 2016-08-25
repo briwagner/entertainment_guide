@@ -1,6 +1,5 @@
-<header>
-  <div class="movie-tv-header">
-    <div ng-hide="uniqueMovies.length === 0">
+<header>    
+    <div ng-hide="uniqueMovies.length === 0" class="movie-tv-header">
       <h4>Found {{uniqueMovies.length}} movies on TV</h4>
       <form class="movie-tv-filter">
         <select ng-model="search">
@@ -9,13 +8,12 @@
       </select>
       </form>
     </div>
+
     <form>
       <input type="submit" ng-hide="uniqueMovies.length > 0" ng-click="fetchMovies()" value="Get Movie Listings">
     </form>
     <h4>Click to get TV movie listings</h4>
-  </div>
 </header>
-
 <div ng-show="loading">Loading ...</div>
 
 <div class="movie-tile centered" ng-repeat="m in uniqueMovies | filter:search">
