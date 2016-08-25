@@ -18,6 +18,6 @@
 </header>
 <div ng-show="loading">Loading ...</div>
 
-<div class="movie-tile centered" ng-repeat="m in uniqueMovies | filter:{program: {genres:genreFilter} }:true | orderBy:'startTime'">
+<div class="movie-tile centered" ng-repeat="m in uniqueMovies | filter:{program: {genres:genreFilter} } | orderBy:'startTime'">
   <movies-tv-tile></movies-tv-tile>
 </div>
