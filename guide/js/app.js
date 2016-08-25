@@ -5,7 +5,25 @@ myApp.controller('mainCrl', ['$scope', '$route', '$routeParams', '$location', 'z
     $scope.$location = $location;
     $scope.$routeParams = $routeParams;
     $scope.zip = zipCtrl;
-    console.log($scope.zip);
+    $scope.zipSet = false;
+
+    $scope.setZipCode = function() {
+      if( $scope.zipCode === undefined) {
+        alert("Please type some numbers");
+      } else if( isValid() ) {
+        $scope.zipSet = true;
+      } else {
+        alert("Please enter a valid zip");
+      }
+    };
+
+    function isValid() {
+      if ( $scope.zipCode.toString().length == 5 ) {
+        return true;
+      } else {
+        return false;
+      }
+    }
 }]);
 
 myApp.config(function($routeProvider, $locationProvider) {
