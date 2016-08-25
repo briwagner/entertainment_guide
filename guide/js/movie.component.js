@@ -51,6 +51,7 @@ myApp.controller('movieCtrl', ['$scope', '$http', 'api', function($scope, $http,
         }
       })
     }
+    $scope.uniqueGenres.sort();
     // format for html display
     if (genreList.length > 0){
       return genreList.join(", ");
