@@ -17,6 +17,11 @@ myApp.controller('mainCrl', ['$scope', '$route', '$routeParams', '$location', 'z
       }
     };
 
+    $scope.clearZip = function() {
+      $scope.zipCode = "";
+      $scope.zipSet = false;
+    }
+
     function isValid() {
       if ( $scope.zipCode.toString().length == 5 ) {
         return true;
