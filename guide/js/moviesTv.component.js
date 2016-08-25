@@ -4,8 +4,9 @@ myApp.controller('moviesTvCtrl', ['$scope', '$http', 'api', function($scope, $ht
   // $scope.uniqueMovies = removeDuplicates($scope.moviesOnTv);
   $scope.moviesOnTv = [];
   $scope.uniqueMovies = [];
-  $scope.genres = [];
   $scope.uniqueGenres = [];
+  $scope.genres = [];
+  $scope.uniqueStations = [];
 
   $scope.urlPrefix = "http://data.tmsapi.com/v1.1/movies/airings?";
   $scope.lineupId = "lineupId=USA-DFLTE";
@@ -28,6 +29,7 @@ myApp.controller('moviesTvCtrl', ['$scope', '$http', 'api', function($scope, $ht
     .then(function(response) {
         $scope.uniqueMovies = removeDuplicates(response.data);
         $scope.uniqueGenres = getAllGenres($scope.uniqueMovies);
+        $scope.uniqueStations = getStations($scope.uniqueMovies);
         $scope.loading = false;
         $scope.moviesSet = true;
       }
@@ -67,7 +69,18 @@ myApp.controller('moviesTvCtrl', ['$scope', '$http', 'api', function($scope, $ht
         })
       }
     });
-    return unique;
+    return unique.sort();
+  }
+
+  function getStations(arr) {
+    var stations = [];
+    for(var i = 0; i < arr.length; i++) {
+      var stationSign = arr[i].station.callSign;
+      if ( stations.indexOf(stationSign) == -1) {
+        stations.push(stationSign);
+      }
+    }
+    return stations.sort();
   }
 
   $scope.getGenre = function(m) {

@@ -12,7 +12,7 @@
       <form id="channelSelect">
         <select ng-model="channelFilter">
           <option value="" selected>All Channels</option>
-          <option ng-repeat="m in uniqueMovies" value="{{m.station.callSign}}">{{m.station.callSign}}</option>
+          <option ng-repeat="s in uniqueStations" value="{{s}}">{{s}}</option>
         </select>
       </form>
     </div>
