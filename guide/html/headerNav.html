@@ -1,5 +1,5 @@
-<div class="header">
-  <div class="menu">
+<div class="header row">
+  <div class="menu col-md-6">
     <nav>
       <a href="/guide/">Home</a>
       <a href="movies">Movie Showtimes</a>
@@ -7,11 +7,19 @@
       <a href="moviesOnTv">Movies on TV</a>
     </nav>
   </div>
-  <div class="zip-container">
-    <form id='zip-code-form'>
-      <input type='number' name='zip-code' placeholder='Enter zip code' ng-model='zipCode'>
-      <input type='Submit' value='Go!' ng-click=''>
+  <div class="zip-container col-md-6" ng-hide="zipSet">
+    <form id="zip-code-form">
+      <div class="form-group col-md-12">
+        <div class="col-md-6">
+          <input type="number" class="form-control col-md-2" name="zip-code" placeholder="Enter zip code" ng-model="zipCode">
+        </div>
+        <div class="col-md-3">
+          <input type="Submit" class="form-control col-md-2" value="Go" ng-click="setZipCode()">
+        </div>
+      </div>
     </form>
-    <p>Your zip is {{zip}}</p>
+  </div>
+  <div class="zip-container" ng-show="zipSet">
+    <h4>Your zip is: {{zipCode}}</h4>
   </div>
 </div>
