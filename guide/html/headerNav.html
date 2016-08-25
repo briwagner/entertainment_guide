@@ -19,7 +19,10 @@
       </div>
     </form>
   </div>
-  <div class="zip-container" ng-show="zipSet">
-    <h4>Your zip is: {{zipCode}}</h4>
+  <div class="zip-container col-md-6" ng-show="zipSet">
+    <div class="col-md-12">
+      <h4>Your zip is: {{zipCode}}</h4>
+      <button ng-click="clearZip()" class="btn btn-default btn-xs inline">X</button>
+    </div>
   </div>
 </div>
