@@ -31,8 +31,7 @@
 
   <div ng-show="loading">Loading ... </div>
   <div class="sports-grid" ng-if="sports.length > 0">
-    <!-- to add sort by sportsId // | orderBy:'program.sportsId'" // -->
-    <div ng-repeat="event in sports | filter:eventFilter" class="sports-tile">
+    <div ng-repeat="event in sports | filter:eventFilter | orderBy:'program.sportsId'" class="sports-tile">
       <sports-tile></sports-tile>
     </div>
   </div>
