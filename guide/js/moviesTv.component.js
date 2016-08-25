@@ -8,7 +8,7 @@ myApp.controller('moviesTvCtrl', ['$scope', '$http', 'api', function($scope, $ht
   $scope.uniqueGenres = [];
 
   $scope.urlPrefix = "http://data.tmsapi.com/v1.1/movies/airings?";
-  $scope.lineupId = "lineupId=USA-VA65087-X";
+  $scope.lineupId = "lineupId=USA-DFLTE";
   $scope.today = dateURL(new Date());
   
   $scope.loading = false;
@@ -79,8 +79,7 @@ myApp.controller('moviesTvCtrl', ['$scope', '$http', 'api', function($scope, $ht
 
 // format date for URL
   function dateURL(d) {
-    var dateString = "startDateTime=" + d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate();
-    return dateString;
+    return d.toJSON();
   }
 
 // formate date for display
