@@ -14,6 +14,7 @@ myApp.controller('movieCtrl', ['$scope', '$http', 'api', function($scope, $http,
 
   $scope.getMovieData = function() {
     var zip = $scope.zipCode;
+
     if (zip == undefined || zip.toString().length !== 5) {
       alert("Please enter a valid zip code");
     } else {
@@ -21,10 +22,17 @@ myApp.controller('movieCtrl', ['$scope', '$http', 'api', function($scope, $http,
       var zipCode = "&zip=" + zip;
       var movieUrl = $scope.apiUrl + $scope.today + zipCode + $scope.apiKey;
       var movieRequest = $http.get(movieUrl);
+    
       movieRequest.then(function(response) {
-        $scope.movies = response.data;
-        $scope.loading = false;
-        $scope.moviesSet = true;
+        if (response.data == "") {
+          alert("Couldn't find any movies in " + $scope.zipCode + ". Search with a different zip code.");
+          $scope.loading = false;
+          $scope.clearZip();
+        } else {
+          $scope.movies = response.data;
+          $scope.loading = false;
+          $scope.moviesSet = true;
+        }
       })
     }
   };
