@@ -2,7 +2,7 @@
     <div ng-show="moviesSet" class="movie-tv-header">
       <h4>Found {{uniqueMovies.length}} movies on TV</h4>
 
-      <form id="tvSelect" class="movie-tv-filter">
+      <form id="tvSelect">
         <select ng-model="search">
           <option value="" selected>All</option>
           <option ng-repeat="m in uniqueGenres" value="{{m}}">{{m}}</option>
