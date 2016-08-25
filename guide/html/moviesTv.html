@@ -4,9 +4,16 @@
 
       <form id="tvSelect">
         <select ng-model="genreFilter">
-          <option value="" selected>All</option>
+          <option value="" selected>All Genres</option>
           <option ng-repeat="m in uniqueGenres" value="{{m}}">{{m}}</option>
-      </select>
+        </select>
+      </form>
+
+      <form id="channelSelect">
+        <select ng-model="channelFilter">
+          <option value="" selected>All Channels</option>
+          <option ng-repeat="m in uniqueMovies" value="{{m.station.callSign}}">{{m.station.callSign}}</option>
+        </select>
       </form>
     </div>
 
@@ -18,6 +25,8 @@
 </header>
 <div ng-show="loading">Loading ...</div>
 
-<div class="movie-tile centered" ng-repeat="m in uniqueMovies | filter:{program: {genres:genreFilter} } | orderBy:'startTime'">
+<div class="movie-tile centered" ng-repeat="m in uniqueMovies | filter:{program: {genres:genreFilter} } 
+                                                              | filter:{station: {callSign:channelFilter} } 
+                                                              | orderBy:'startTime'">
   <movies-tv-tile></movies-tv-tile>
 </div>

@@ -149,7 +149,8 @@ header form {
 /* filter boxes */
 #movieSelect select,
 #eventSelect select,
-#tvSelect select {
+#tvSelect select,
+#channelSelect select {
   border-radius:5px;
   border: 1px solid blue;
 }
@@ -157,7 +158,8 @@ header form {
 select, 
 #movieSelect select option,
 #eventSelect select option,
-#tvSelect select option {
+#tvSelect select option,
+#channelSelect select {
   font-size: 16px;
   line-height: 1.4em;
   padding: 5px 15px;
