@@ -19,7 +19,13 @@ myApp.controller('moviesTvCtrl', ['$scope', '$http', 'api', function($scope, $ht
   $scope.getMovieUrl = getMovieListingUrl();
 
   function getMovieListingUrl() {
-    var url = $scope.urlPrefix + $scope.lineupId + "&" + $scope.today + "&" + "api_key=" + api.key;
+    var url = $scope.urlPrefix 
+            + $scope.lineupId
+            + "&" 
+            + $scope.today 
+            + "&" 
+            + "api_key=" 
+            + api.key;
     return url;
   };
 
@@ -92,10 +98,18 @@ myApp.controller('moviesTvCtrl', ['$scope', '$http', 'api', function($scope, $ht
 
 // format date for URL
   function dateURL(d) {
-    return d.toJSON();
+    var offset = d.getTimezoneOffset() / 60;
+    if (offset.toString().length == 1) {
+      offset = "0" + offset; 
+    }
+    var date = d.toJSON().replace("Z", "")
+             + "-"
+             + offset
+             + ":00";
+    return date;
   }
 
-// formate date for display
+// format date for display
   $scope.getEventTime = function(dateObj) {
     var eventDT = new Date(dateObj);
     return eventDT.toLocaleTimeString('en-US', {hour: '2-digit', minute: '2-digit'});
