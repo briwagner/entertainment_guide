@@ -1,8 +1,7 @@
 <div class='movie-grid'>
   <header>
     <form>
-      <input name="zipCode" type="text" placeholder="Enter zip code" ng-model="zipCode">
-      <input type='submit' value="Find Movies" ng-click="getMovieData(zipCode)">
+      <input type='submit' value="Find Movies" ng-click="getMovieData()">
     </form>
     <h4 ng-show="movies.length > 0">Found {{movies.length}} movies</h4>
   </header>
