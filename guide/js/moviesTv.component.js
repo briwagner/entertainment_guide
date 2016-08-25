@@ -27,7 +27,7 @@ myApp.controller('moviesTvCtrl', ['$scope', '$http', 'api', function($scope, $ht
     $http.get($scope.getMovieUrl)
     .then(function(response) {
         $scope.uniqueMovies = removeDuplicates(response.data);
-        $scope.uniqueGenres = getGenres($scope.uniqueMovies);
+        $scope.uniqueGenres = getAllGenres($scope.uniqueMovies);
         $scope.loading = false;
         $scope.moviesSet = true;
       }
@@ -55,7 +55,7 @@ myApp.controller('moviesTvCtrl', ['$scope', '$http', 'api', function($scope, $ht
   };
 
 // get only unique genres for Select Filter
-  function getGenres(arr) {
+  function getAllGenres(arr) {
     var unique = [];
 
     arr.forEach(function(el) {
@@ -68,6 +68,13 @@ myApp.controller('moviesTvCtrl', ['$scope', '$http', 'api', function($scope, $ht
       }
     });
     return unique;
+  }
+
+  $scope.getGenre = function(m) {
+    if (m.genres && m.genres.length > 0) {
+      var arr = m.genres;
+      return arr.join(", ");
+    } 
   }
 
 // format date for URL
