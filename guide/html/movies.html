@@ -1,14 +1,16 @@
 <div class='movie-grid'>
   <header>
-    <form>
+    <form ng-hide="movies.length > 0">
       <input type='submit' value="Find Movies" ng-click="getMovieData()">
     </form>
-    <h4 ng-show="movies.length > 0">Found {{movies.length}} movies</h4>
+    <div ng-show="movies.length > 0">
+      <h4>Found {{movies.length}} movies</h4>
+    </div>
   </header>
 
   <div ng-show="loading">Loading ...</div>
 
-  <div ng-repeat='m in movies | orderBy:"title"' class="movie-tile {{getGenres(m)}}">
+  <div ng-repeat="m in movies | orderBy:'title'" class="movie-tile">
     <movie-tile></movie-tile>
   </div>
 </div>

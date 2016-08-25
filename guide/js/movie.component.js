@@ -30,11 +30,11 @@ myApp.controller('movieCtrl', ['$scope', '$http', 'api', function($scope, $http,
     var genreList = [];
     if (movie.genres && movie.genres.length > 0) {
       movie.genres.forEach(function(e) {
-        genreList.push(e.toLowerCase().replace(" ", "-"));
+        genreList.push(e.replace(" ", "-"));
       })
     }
     if (genreList.length > 0){
-      return genreList.join(" ");
+      return genreList.join(", ");
     }
   };
 
