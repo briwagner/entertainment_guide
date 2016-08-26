@@ -4,6 +4,8 @@
 <head>
   <base href="/guide/">
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
   <title>Entertainment Guide - Movie Guide</title>
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
@@ -17,16 +19,20 @@
   <script type="text/javascript" src="js/movie.component.js"></script>
   <script type="text/javascript" src="js/sports.component.js"></script>
   <script type="text/javascript" src="js/moviesTv.component.js"></script>
-  <script type="text/javascript" src="rawMoviesTv.js"></script>
+  <!--<script type="text/javascript" src="rawMoviesTv.js"></script>-->
+  <!--<script type="text/javascript" src="rawSports.js"></script>-->
 
 </head>
 
-<body ng-app='myApp'>
-
-    <header-nav></header-nav>
+<body ng-app="myApp">
 
     <div class="container-fluid" ng-controller="mainCrl">
-        <ng-view></ng-view>
+        <div class="row">
+            <header-nav></header-nav>
+        </div>
+        <div class="row">
+            <ng-view></ng-view>
+        </div>
     </div>
 </body>
 </html>

@@ -1,10 +1,35 @@
 var myApp = angular.module('myApp', ['ngRoute']);
 
-myApp.controller('mainCrl', function($scope, $route, $routeParams, $location) {
+myApp.controller('mainCrl', ['$scope', '$route', '$routeParams', '$location', 'zipCtrl', function($scope, $route, $routeParams, $location, zipCtrl) {
     $scope.$route = $route;
     $scope.$location = $location;
     $scope.$routeParams = $routeParams;
-});
+    $scope.zip = zipCtrl;
+    $scope.zipSet = false;
+
+    $scope.setZipCode = function() {
+      if( $scope.zipCode === undefined) {
+        alert("Please type some numbers");
+      } else if( isValid() ) {
+        $scope.zipSet = true;
+      } else {
+        alert("Please enter a valid zip");
+      }
+    };
+
+    $scope.clearZip = function() {
+      $scope.zipCode = "";
+      $scope.zipSet = false;
+    }
+
+    function isValid() {
+      if ( $scope.zipCode.toString().length == 5 ) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+}]);
 
 myApp.config(function($routeProvider, $locationProvider) {
     $routeProvider.when("/", {
@@ -38,5 +63,13 @@ myApp.directive('headerNav', function() {
 myApp.directive('movieTile', function() {
   return {
     templateUrl: '/guide/html/movieTile.html'
+  }
+});
+
+myApp.factory('zipCtrl', function() {
+  return function() {
+  this.userZipcode = 12345;
+
+    userZipcode
   }
 });

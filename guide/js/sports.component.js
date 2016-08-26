@@ -4,35 +4,42 @@ myApp.controller('sportsCtrl', ['$scope', '$http', 'api', function($scope, $http
   $scope.sports = [];
   $scope.sportTypes = [];
   $scope.sportTitles = [];
-  
+
   $scope.loading = false;
+  $scope.sportsSet = false;
 
   // api properties
   $scope.apiUrl = api.url;
   $scope.apiKey = '&api_key=' + api.key;
-
   $scope.sportsPrefix = 'v1.1/sports/all/events/airings?';
+
+  // only lineup available?
   $scope.lineupId = 'lineupId=USA-VA65087-X';
 
   // today's date for query
   $scope.queryDate = new Date();
   $scope.dateURL = '&startDateTime=' + getTodayDate($scope.queryDate);
 
-  // user enters zip code; NOT possible w/ current api account
-  $scope.zipCode;
-
   // custom function to clean event type
   $scope.scrubEventType = scrubEventType;
 
   // form processing
-  $scope.getSportListings = function(zipCode) {
+  $scope.getSportListings = function() {
     $scope.loading = true;
-    var requestURL = $scope.apiUrl + $scope.sportsPrefix + $scope.lineupId + $scope.dateURL + $scope.apiKey;
+
+    var requestURL = $scope.apiUrl
+                   + $scope.sportsPrefix
+                   + $scope.lineupId
+                   + $scope.dateURL
+                   + $scope.apiKey;
+
     var getSports = $http.get(requestURL);
+
     getSports.then(function(response) {
       $scope.sports = stripDupes(response.data);
       $scope.sportTitles = getAllTitles($scope.sports);
       $scope.loading = false;
+      $scope.sportsSet = true;
     });
   }
 
@@ -50,7 +57,7 @@ myApp.controller('sportsCtrl', ['$scope', '$http', 'api', function($scope, $http
     return d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate();
   }
 
-  // formate date for final display in header
+  // format date for final display in header
   $scope.prettyDate = function(d) {
     return d.toLocaleDateString();
   }
@@ -87,7 +94,9 @@ myApp.controller('sportsCtrl', ['$scope', '$http', 'api', function($scope, $http
   // iterate over genres for individual event
   $scope.getEventType = function(spEvent) {
     var genreArr = [];
+
     var genres = spEvent.program.genres;
+
     if (genres && genres.length > 0 ) {
       spEvent.program.genres.forEach(function(el) {
         genreArr.push( scrubEventType(el) );
@@ -101,6 +110,7 @@ myApp.controller('sportsCtrl', ['$scope', '$http', 'api', function($scope, $http
   // iterate over all events to get types for select filter
   function getAllEventTypes(arr) {
     var arrTypes = [];
+
     arr.forEach(function(el) {
       if (el.program.genres) {
         el.program.genres.forEach(function(e) {
@@ -116,6 +126,7 @@ myApp.controller('sportsCtrl', ['$scope', '$http', 'api', function($scope, $http
 
   function getAllTitles(dataArr) {
     titles = [];
+
     dataArr.forEach(function(el) {
       if (el.program.title) {
         var newTitle = el.program.title;
@@ -140,3 +151,18 @@ myApp.directive('sportsTile', function() {
     templateUrl: 'html/sportsTile.html'
   }
 });
+
+var Sport = function(data) {
+  this.data = data;
+  this.sportId = data.program.sportsId;
+  this.startTime = new Date(data.startTime);
+  this.endTime = new Date(data.endTime);
+  this.title = data.program.eventTitle;
+  this.genres = data.program.genres;
+  this.station = data.station.callSign;
+  this.stationNum = data.station.channel;
+
+  this.duration = function() {
+    return this.endTime - this.startTime;
+  };
+};

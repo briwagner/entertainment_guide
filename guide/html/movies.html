@@ -1,15 +1,31 @@
 <div class='movie-grid'>
   <header>
-    <form>
-      <input name="zipCode" type="text" placeholder="Enter zip code" ng-model="zipCode">
-      <input type='submit' value="Find Movies" ng-click="getMovieData(zipCode)">
+    <form ng-hide="moviesSet" class="pad-left">
+      <input type='submit' value="Find Movies" ng-click="getMovieData()">
+      <h4>Click to view local showtimes.</h4>
     </form>
-    <h4 ng-show="movies.length > 0">Found {{movies.length}} movies</h4>
+    
+    <div ng-show="moviesSet">
+      <h4>Found {{movies.length}} movies</h4>
+    </div>
+
+    <form id="movieSelect" ng-show="moviesSet">
+      <select ng-model="search">
+        <option value="" selected>All</option>
+        <option ng-repeat="m in uniqueGenres" value="{{m}}">{{m}}</option>
+      </select>
+    </form>
   </header>
-  
-  <div ng-show="loading">Loading ...</div>
-  
-  <div ng-repeat='m in movies' class="movie-tile {{getGenres(m)}}">
-    <movie-tile></movie-tile>
+
+  <div ng-show="loading" class="pad-left">
+    <p class="pad-left"><em>Loading ...</em></p>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div ng-repeat="m in movies | filter:{ genres:search } | orderBy:'title'" class="col-xs-4 col-sm-3 col-md-2 movie-group">
+        <movie-tile></movie-tile>
+      </div>
+    </div>
   </div>
 </div>

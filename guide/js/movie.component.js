@@ -7,33 +7,54 @@ myApp.controller('movieCtrl', ['$scope', '$http', 'api', function($scope, $http,
   $scope.today = "startDate=" + getTodayDate($scope.queryDate);
 
   $scope.movies = []; //movieRaw;
+  $scope.uniqueGenres = [];
   
   $scope.loading = false;
+  $scope.moviesSet = false;
 
-  $scope.getMovieData = function(zip) {
-    if (zip == undefined || zip.length != 5) {
+  $scope.getMovieData = function() {
+    var zip = $scope.zipCode;
+
+    if (zip == undefined || zip.toString().length !== 5) {
       alert("Please enter a valid zip code");
     } else {
       $scope.loading = true;
       var zipCode = "&zip=" + zip;
       var movieUrl = $scope.apiUrl + $scope.today + zipCode + $scope.apiKey;
       var movieRequest = $http.get(movieUrl);
+    
       movieRequest.then(function(response) {
-        $scope.movies = response.data;
-        $scope.loading = false;
+        if (response.data == "") {
+          alert("Couldn't find any movies in " + $scope.zipCode + ". Search with a different zip code.");
+          $scope.loading = false;
+          $scope.clearZip();
+        } else {
+          $scope.movies = response.data;
+          $scope.loading = false;
+          $scope.moviesSet = true;
+        }
       })
     }
   };
 
   $scope.getGenres = function(movie) {
     var genreList = [];
+
     if (movie.genres && movie.genres.length > 0) {
       movie.genres.forEach(function(e) {
-        genreList.push(e.toLowerCase().replace(" ", "-"));
+        var gen = e.replace(" ", "-");
+        genreList.push(gen);
+
+      // push to master genre list
+        if ($scope.uniqueGenres.indexOf(e) === -1) {
+          $scope.uniqueGenres.push(e);
+        }
       })
     }
+    $scope.uniqueGenres.sort();
+    // format for html display
     if (genreList.length > 0){
-      return genreList.join(" ");
+      return genreList.join(", ");
     }
   };
 

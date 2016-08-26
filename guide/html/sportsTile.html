@@ -1,5 +1,9 @@
-<h4 class='centered'>{{event.program.eventTitle}}</h4>
-<h4 ng-if='!event.program.eventTitle' class='centered'>{{event.program.title}}</h4>
-<p class='centered' ng-hide='!event.program.eventTitle'>{{event.program.title}}</p>
-<p class='centered' ng-if='!event.program.eventTitle'>{{event.program.shortDescription}}</p>
-<p>Airing on <strong>{{event.station.callSign}}</strong> at <em>{{ getEventTime(event.startTime) }}</em></p>
+<div class="row sports-tile">
+    <h4 class='centered'>{{event.program.eventTitle}}</h4>
+    <h4 ng-if='!event.program.eventTitle' class='centered'>{{event.program.title}}</h4>
+    <p class='centered' ng-hide='!event.program.eventTitle'>{{event.program.title}}</p>
+    <p class='centered' ng-if='!event.program.eventTitle'>{{event.program.shortDescription}}</p>
+    <!-- <p>{{event.program.sportsId}}</p> -->
+    <p class="centered"><strong>{{event.station.callSign}}</strong> {{event.station.channel}}</p>
+    <p class="centered"><em>{{ getEventTime(event.startTime) }}</em></p>
+</div>

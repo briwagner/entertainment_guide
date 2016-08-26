@@ -1,23 +1,39 @@
-<header>
-  <div class="movie-tv-header">
-    <div ng-hide="uniqueMovies.length === 0">
+<header>    
+    <div ng-show="moviesSet" class="movie-tv-header">
       <h4>Found {{uniqueMovies.length}} movies on TV</h4>
-      <form class="movie-tv-filter">
-        <select ng-model="search">
-          <option value="" selected>All</option>
+
+      <form id="tvSelect">
+        <select ng-model="genreFilter">
+          <option value="" selected>All Genres</option>
           <option ng-repeat="m in uniqueGenres" value="{{m}}">{{m}}</option>
-      </select>
+        </select>
+      </form>
+
+      <form id="channelSelect">
+        <select ng-model="channelFilter">
+          <option value="" selected>All Channels</option>
+          <option ng-repeat="s in uniqueStations" value="{{s}}">{{s}}</option>
+        </select>
       </form>
     </div>
-    <form>
-      <input type="submit" ng-hide="uniqueMovies.length > 0" ng-click="fetchMovies()" value="Get Movie Listings">
+
+    <form ng-hide="moviesSet" class="pad-left">
+      <input type="submit" ng-click="fetchMovies()" value="Get Movie Listings">
+      <h4>Click to get TV movie listings</h4>
     </form>
-    <h4>Click to get TV movie listings</h4>
-  </div>
+
 </header>
+<div ng-show="loading" class="pad-left">
+  <p class="pad-left"><em>Loading ...</em></p>
+</div>
 
-<div ng-show="loading">Loading ...</div>
-
-<div class="movie-tile centered" ng-repeat="m in uniqueMovies | filter:search">
-  <movies-tv-tile></movies-tv-tile>
+<div class="row">
+  <div class="col-md-12">
+    <div class="col-xs-4 col-sm-3 col-md-2 movie-tv-group centered" 
+      ng-repeat="m in uniqueMovies | filter:{program: {genres:genreFilter} } 
+                                  | filter:{station: {callSign:channelFilter} } 
+                                  | orderBy:'startTime'">
+      <movies-tv-tile></movies-tv-tile>
+    </div>
+  </div>
 </div>

@@ -3,30 +3,71 @@
   clear:both;
 }
 
-.movie-tile, .sports-tile {
-  width: 200px;
-  height: 340px;
-  float: left;
-  margin: 5px;
+.movie-tile, 
+.sports-tile,
+.movie-tv-tile {
   border: 2px solid #00ace6;
-  background: linear-gradient(to top, #4dd2ff 5%,#b3ecff);
   border-radius: 2%;
+  background: linear-gradient(to top, #4dd2ff 5%,#b3ecff);
+  height: 360px;
+  margin: 5px;
   padding: 5px;
   overflow: hidden;
 }
 
-/*.movie-tile p {
-  padding: 2px 5px;
-}*/
+.sports-tile,
+.movie-tv-tile {
+  height:280px;
+}
+
+.movie-group,
+.sports-group,
+.movie-tv-group {
+  padding:0;
+}
 
 .centered {
   text-align: center;
 }
 
+.pad-left {
+  padding-left:22px;
+}
+
 .header {
-  padding: 16px 10px 0;
   background-color: #660066;
   height: 70px;
+}
+
+header-nav h4 {
+  display:inline-block;
+  vertical-align: middle;
+}
+
+/*.menu {
+  margin-top:16px;
+}*/
+
+.zip-container {
+  color:white;
+  text-align:right;
+  /*display:inline-block;*/
+  padding: 15px 5px 0;
+}
+
+.zip-container button {
+  font-weight: 700;
+  margin-left: 10px;
+}
+
+#zip-code-form {
+  margin-top:3px;
+  color:black;
+}
+
+#zip-code-form input[type="number"] {
+  border: 1px solid #333;
+  border-radius: 2%;
 }
 
 .show-time {
@@ -39,28 +80,34 @@
 
 .show-time p {
    margin: 0 1px;
-   padding:0;  
+   padding:0;
 }
 
-nav {
+/*nav {
   padding-top: 10px;
-}
+}*/
 
-nav a {
-  background-color: #990099;
-  padding: 20px 15px;
+nav .tab {
+  font-size: 18px;
+  text-align:center;
   color: white;
+  background-color: #990099;
+  border: 1px solid #660066;
   border-radius: 15px 15px 0 0;
-  font-size: 18px
+  height:60px;
+  margin-top:8px;
+  padding: 20px 0 15px;
 }
 
-nav a:link, nav a:visited, nav a:active, nav a:hover {
+nav a:link, 
+nav a:visited, 
+nav a:active, 
+nav a:hover {
   text-decoration: none;
   color: white;
 }
 
-nav a:hover {
-  color: white;
+nav .tab:hover {
   background: linear-gradient(purple 40%, #660066);
   box-shadow: 1px -1px 2px #333;
 }
@@ -96,16 +143,6 @@ header input[type="submit"]:hover {
   box-shadow: 1px 1px 2px #666;
 }
 
-.movie-tv-header {
-  padding: 20px 0;
-}
-
-.movie-tv-header select {
-  padding: 15px 20px;
-  margin-bottom: 10px;
-  font-size: 1.5em;
-}
-
 .event-list {
   list-style-type: none;
   padding: 0;
@@ -125,12 +162,72 @@ header form {
   margin: 10px 0;
 }
 
-header #eventSelect {
+/* filter boxes */
+#movieSelect select,
+#eventSelect select,
+#tvSelect select,
+#channelSelect select {
+  border-radius:5px;
+  border: 1px solid blue;
 }
 
-select, header #eventSelect option {
+select, 
+#movieSelect select option,
+#eventSelect select option,
+#tvSelect select option,
+#channelSelect select {
   font-size: 16px;
   line-height: 1.4em;
   padding: 5px 15px;
+  color:blue;
 }
 
+.inline {
+  display:inline-block;
+}
+
+.theater {
+  color:#0C83C5;
+  line-height:1.2em;
+  margin:5px 0;
+}
+
+.genre {
+  color:#0B447C;
+  margin-top:10px;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin:0;
+}
+
+@media screen and (max-width: 992px) {
+  .header {
+    height:130px;
+  }
+  .menu {
+    border-bottom: 3px solid #430066;
+  }
+  .zip-container {
+    padding-top:8px;
+  }
+}
+
+@media screen and (max-width:640px) {
+  nav .tab {
+    padding-top:0px;
+    font-size:16px;
+  }
+
+  nav a {
+    position:relative;
+    top:6px;
+    padding:0 5px;
+  }
+}
