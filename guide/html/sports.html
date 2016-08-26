@@ -1,8 +1,10 @@
 <div>
   <header>
-      <form ng-hide="sportsSet">
-        <input type="submit" value="Get Sports for Today" ng-click="getSportListings()">
-      </form>
+    <form ng-hide="sportsSet" class="pad-left">
+      <input type="submit" value="Get Sports for Today" ng-click="getSportListings()">
+      <h4 ng-hide="sportsSet">Click to view sports on local TV.</h4>
+    </form>
+
 
     <div ng-show="sportsSet">
       <h4>Found {{ sports.length }} events on tv for {{prettyDate(queryDate)}}</h4>
@@ -18,16 +20,15 @@
         <option ng-repeat="ev in sportTitles" value="{{ev}}">{{ev}}</option>
       </select>
     </form>
-
-    <h4 ng-hide="sportsSet">Click to view sports on local TV.</h4>
-
   </header>
 
   <div ng-show="loading">Loading ... </div>
-
-  <div class="sports-grid">
-    <div ng-repeat="event in sports | filter:eventFilter | orderBy:'program.sportsId'" class="sports-tile">
-      <sports-tile></sports-tile>
+  
+  <div class="row">
+    <div class="sports-grid col-md-12">
+      <div ng-repeat="event in sports | filter:eventFilter | orderBy:'program.sportsId'" class="col-xs-4 col-sm-3 col-md-2 sports-group">
+        <sports-tile></sports-tile>
+      </div>
     </div>
   </div>
 </div>

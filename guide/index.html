@@ -4,6 +4,8 @@
 <head>
   <base href="/guide/">
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
   <title>Entertainment Guide - Movie Guide</title>
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
@@ -22,11 +24,15 @@
 
 </head>
 
-<body ng-app='myApp'>
+<body ng-app="myApp">
 
     <div class="container-fluid" ng-controller="mainCrl">
-        <header-nav></header-nav>
-        <ng-view></ng-view>
+        <div class="row">
+            <header-nav></header-nav>
+        </div>
+        <div class="row">
+            <ng-view></ng-view>
+        </div>
     </div>
 </body>
 </html>

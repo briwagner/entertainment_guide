@@ -1,7 +1,8 @@
 <div class='movie-grid'>
   <header>
-    <form ng-hide="moviesSet">
+    <form ng-hide="moviesSet" class="pad-left">
       <input type='submit' value="Find Movies" ng-click="getMovieData()">
+      <h4>Click to view local showtimes.</h4>
     </form>
     
     <div ng-show="moviesSet">
@@ -18,7 +19,11 @@
 
   <div ng-show="loading">Loading ...</div>
 
-  <div ng-repeat="m in movies | filter:search | orderBy:'title'" class="movie-tile">
-    <movie-tile></movie-tile>
+  <div class="row">
+    <div class="col-md-12">
+      <div ng-repeat="m in movies | filter:search | orderBy:'title'" class="col-xs-4 col-sm-3 col-md-2 movie-group">
+        <movie-tile></movie-tile>
+      </div>
+    </div>
   </div>
 </div>

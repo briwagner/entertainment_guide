@@ -1,5 +1,7 @@
-<h4>{{m.program.title}}</h4>
-<p>{{m.program.shortDescription}}</p>
-<p class="genre"><em>{{ getGenre(m.program) }}</em></p>
-<p><strong>{{m.station.callSign}}</strong> {{m.station.channel}}</p>
-<p><em>{{getEventTime(m.startTime)}}</em></p>
+<div class="row movie-tv-tile">
+    <h4>{{m.program.title}}</h4>
+    <p>{{m.program.shortDescription}}</p>
+    <p class="genre"><em>{{ getGenre(m.program) }}</em></p>
+    <p><strong>{{m.station.callSign}}</strong> {{m.station.channel}}</p>
+    <p><em>{{getEventTime(m.startTime)}}</em></p>
+</div>

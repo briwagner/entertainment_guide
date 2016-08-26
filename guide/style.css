@@ -3,28 +3,38 @@
   clear:both;
 }
 
-.movie-tile, .sports-tile {
-  width: 200px;
-  height: 340px;
-  float: left;
-  margin: 5px;
+.movie-tile, 
+.sports-tile,
+.movie-tv-tile {
   border: 2px solid #00ace6;
-  background: linear-gradient(to top, #4dd2ff 5%,#b3ecff);
   border-radius: 2%;
+  background: linear-gradient(to top, #4dd2ff 5%,#b3ecff);
+  height: 360px;
+  margin: 5px;
   padding: 5px;
   overflow: hidden;
 }
 
-/*.movie-tile p {
-  padding: 2px 5px;
-}*/
+.sports-tile,
+.movie-tv-tile {
+  height:280px;
+}
+
+.movie-group,
+.sports-group,
+.movie-tv-group {
+  padding:0;
+}
 
 .centered {
   text-align: center;
 }
 
+.pad-left {
+  padding-left:22px;
+}
+
 .header {
-  /*padding: 16px 10px 0;*/
   background-color: #660066;
   height: 70px;
 }
@@ -34,15 +44,15 @@ header-nav h4 {
   vertical-align: middle;
 }
 
-.menu {
-  display:inline-block;
+/*.menu {
   margin-top:16px;
-}
+}*/
 
 .zip-container {
-  display:inline-block;
-  padding: 15px 5px 0;
   color:white;
+  text-align:right;
+  /*display:inline-block;*/
+  padding: 15px 5px 0;
 }
 
 .zip-container button {
@@ -73,25 +83,31 @@ header-nav h4 {
    padding:0;
 }
 
-nav {
+/*nav {
   padding-top: 10px;
-}
+}*/
 
-nav a {
-  background-color: #990099;
-  padding: 20px 15px;
+nav .tab {
+  font-size: 18px;
+  text-align:center;
   color: white;
+  background-color: #990099;
+  border: 1px solid #660066;
   border-radius: 15px 15px 0 0;
-  font-size: 18px
+  height:60px;
+  margin-top:8px;
+  padding: 20px 0 15px;
 }
 
-nav a:link, nav a:visited, nav a:active, nav a:hover {
+nav a:link, 
+nav a:visited, 
+nav a:active, 
+nav a:hover {
   text-decoration: none;
   color: white;
 }
 
-nav a:hover {
-  color: white;
+nav .tab:hover {
   background: linear-gradient(purple 40%, #660066);
   box-shadow: 1px -1px 2px #333;
 }
@@ -189,4 +205,28 @@ input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin:0;
+}
+
+@media screen and (max-width: 992px) {
+  .header {
+    height:130px;
+  }
+  .menu {
+    border-bottom: 3px solid #430066;
+  }
+  .zip-container {
+    padding-top:8px;
+  }
+}
+
+@media screen and (max-width:640px) {
+  nav .tab {
+    padding-top:0px;
+  }
+
+  nav a {
+    position:relative;
+    top:6px;
+    padding:0 5px;
+  }
 }
