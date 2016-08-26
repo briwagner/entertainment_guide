@@ -9,4 +9,3 @@ Schedule of movies on tv is also available and will be implemented.
 
 In progress:
 click on movies to get more info?
-add genres to movies on tv
