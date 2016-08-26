@@ -23,7 +23,7 @@
 
   <div class="row">
     <div class="col-md-12">
-      <div ng-repeat="m in movies | filter:search | orderBy:'title'" class="col-xs-4 col-sm-3 col-md-2 movie-group">
+      <div ng-repeat="m in movies | filter:{ genres:search } | orderBy:'title'" class="col-xs-4 col-sm-3 col-md-2 movie-group">
         <movie-tile></movie-tile>
       </div>
     </div>
